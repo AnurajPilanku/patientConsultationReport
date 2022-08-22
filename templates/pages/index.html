@@ -1,0 +1,68 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Web form</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <form action="/consult" method="post">-->
+<!--        <p>Please enter your first and last name:</p>-->
+<!--         Clinic Name   <input type="text" name="clname" align="left">&nbsp;&nbsp;-->
+<!--         Clinic logo  <input type="text" name="cllogo" align="right">-->
+<!--         <br>-->
+<!--         <br>-->
+<!--         Physician Name <input type="text" name="subject">-->
+<!--         Physician Contact <input type="text" name="name">-->
+<!--         <br>-->
+<!--         <br>-->
+<!--         Patient first Name <input type="text" name="rank">-->
+<!--         Patient Last Name<input type="text" name="name">-->
+<!--         <br>-->
+<!--        <br>-->
+<!--         Patient Dob <input type="text" name="rank">-->
+<!--         Patient Contact <input type="text" name="name">-->
+<!--        <br><br>-->
+<!--        <input type ="submit" value = "Generate report" >-->
+<!--    </form>-->
+<!--</body>-->
+<!--</html>-->
+{% load static%}
+
+<html>
+<link rel="stylesheet" href="{% static 'car/custom.css' %}">
+<style>
+  .clname{
+  border:2px solid blue;
+  border-radius : 5px;
+  background :cyan;
+  }
+  .headcl{
+  background-color:tomato;
+  font-family:'Courier New';
+  }
+
+</style>
+    <body bgcolor="#D3D3D3">
+    <h1 class="headcl" > Consultation page</h1>
+    <p>Please fill all the details in the form!!</p>
+        <form action="" method="POST">
+            {% csrf_token %}
+          {% for field in form %}
+             {% if field != Description %}
+                  <div class ='form-control'>
+                  {{field.label_tag}}
+                  </div>
+                  <label class="clname">{{field}}</label>
+             {% else %}
+                   <div class ='form-control'>
+                   <label>{{field.label_tag}}</label>
+                    <label class="clname">{{field}}</label>
+                   </div>
+             {% endif %}
+          {%endfor%}
+          <input type="submit" value="Generate PDF">
+        </form>
+    </body>
+</html>
