@@ -7,7 +7,7 @@ from .generate_pdf import pdf_generator
 from .forms import ConsultationForm
 
 def consultation(request):
-    if request.method == "GET":
+    if request.method == "GET":#how do we know the request is get or post
         form = ConsultationForm()
         context = {}
         context["form"] = form
